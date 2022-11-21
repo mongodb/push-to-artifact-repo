@@ -1,0 +1,46 @@
+name: Push to Artifact Repos
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "tutorial/**"
+
+jobs:
+  check:
+    name: Bluehawk Check Tutorials
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+      - run: npx bluehawk check -i "*.md" -i "*.properties" -i "*.lock" tutorial
+  push:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: React Native
+        uses: cbush/push-to-artifact-repo
+        with:
+          email: some-machine-user@example.com
+          name: Machine User
+          states: start final
+          source: ./tutorial/rn
+          toRepo: https://${{ secrets.TUTORIAL_REPO_ACCESS_TOKEN }}@github.com/some-org/tutorial-rn.git
+          commitMessage: Update
+
+            Initiated by https://github.com/mongodb/docs-realm/commit/${{ github.sha }}
+      - name: Swift
+        uses: cbush/push-to-artifact-repo
+        with:
+          email: some-machine-user@example.com
+          name: Machine User
+          branch: main
+          source: ./tutorial/swift
+          toRepo: https://${{ secrets.TUTORIAL_REPO_ACCESS_TOKEN }}@github.com/some-org/tutorial-swift.git
+          commitMessage: Update
+
+            Initiated by https://github.com/mongodb/docs-realm/commit/${{ github.sha }}
