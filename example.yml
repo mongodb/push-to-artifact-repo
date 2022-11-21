@@ -32,7 +32,7 @@ jobs:
           toRepo: https://${{ secrets.TUTORIAL_REPO_ACCESS_TOKEN }}@github.com/some-org/tutorial-rn.git
           commitMessage: Update
 
-            Initiated by https://github.com/mongodb/docs-realm/commit/${{ github.sha }}
+            Initiated by ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
       - name: Swift
         uses: cbush/push-to-artifact-repo
         with:
@@ -43,4 +43,4 @@ jobs:
           toRepo: https://${{ secrets.TUTORIAL_REPO_ACCESS_TOKEN }}@github.com/some-org/tutorial-swift.git
           commitMessage: Update
 
-            Initiated by https://github.com/mongodb/docs-realm/commit/${{ github.sha }}
+            Initiated by ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
