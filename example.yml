@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: React Native
-        uses: cbush/push-to-artifact-repo
+        uses: mongodb/push-to-artifact-repo
         with:
           email: some-machine-user@example.com
           name: Machine User
@@ -34,7 +34,7 @@ jobs:
 
             Initiated by ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
       - name: Swift
-        uses: cbush/push-to-artifact-repo
+        uses: mongodb/push-to-artifact-repo
         with:
           email: some-machine-user@example.com
           name: Machine User
