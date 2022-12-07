@@ -1,4 +1,4 @@
-# push-to-artifact-repos
+# push-to-artifact-repo
 
 A GitHub Action that copies source to another repo using
 [Bluehawk](https://github.com/mongodb-university/bluehawk) with
